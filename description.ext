@@ -1,0 +1,140 @@
+
+
+
+onLoadName = "Tier1 MCC v9";
+onLoadMission = "Tier 1 MCC v9 mission";
+author="Tier1";
+
+
+
+respawn = "BASE";
+respawndelay = 1;
+RespawnDialog = 0;
+disabledAI = 1;
+saving = 0;
+loadScreen = "Tier1\tier1_logo.paa";
+
+
+
+//	BTC Revive stuff.
+#include "=BTC=_revive\=BTC=_respawn.h"
+
+
+
+//	TAW view distance stuff.
+#include "taw_vd\dialog.hpp"
+
+
+
+//	Crew HUD stuff.
+#include "Tier1\VehicleHud\dialog.hpp"
+class RscTitles 
+{
+	#include "Tier1\VehicleHud\hud_titles.sqf"
+};
+
+
+//	MCC stuff.
+#include "defines.hpp"
+enableDebugConsole = 1;
+
+
+
+class Header
+{
+	gameType = COOP; //game type
+	minPlayers = 1; //min # of players the mission supports
+	maxPlayers = 69; //max # of players the mission supports
+	playerCountMultipleOf = 1; //OFP:Elite option.
+};
+
+
+
+class Params
+{
+	class paramZero
+	{
+		title = "Would you like the players to be able to spawn armed helicopters?";
+		values[] = {1, 0};
+		texts[] = {"Yes (Default)", "No"};
+		default = 1;
+		code = "T1_spawnArmedHelos = %1";
+	};
+	
+	class paramOne
+	{
+		title = "Would you like the players to be able to spawn armed cars?";
+		values[] = {1, 0};
+		texts[] = {"Yes (Default)", "No"};
+		default = 1;
+		code = "T1_spawnArmedcars = %1";
+	};
+	
+	class paramTwo
+	{
+		title = "At what time of day would you like to play?";
+		values[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23};
+		texts[] = {"00:00", "01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00 (Default)", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00", "23:00"};
+		default = 14;
+		code = "T1_startingTimeHour = %1";
+	};
+
+	class paramThree
+	{
+		title = "Would you like to enable TPWCAS_A3 AI Suppression?";
+		values[] = {0,1};
+		texts[] = {"Off","On (Default)"};
+		default = 1;
+		code = "tpwcas_enable = %1";
+	};
+	
+	class paramFour
+	{
+		title = "Which TPWCAS_A3 AI Suppression Mode would you like to enable?";
+		values[] = {0,1};
+		texts[] = {"AI and Players (Default)","AI only"};
+		default = 0;
+		code = "tpwcas_mode = %1";
+	};
+	
+	class paramFive
+	{
+		title = "Is UAV Recon available to the Platoon Leader?";
+		values[] = {1,0};
+		texts[] = {"Yes", "No (Default)"};
+		default = 0;
+		code = "uav_available_in_mission = %1";
+	};
+	
+	class paramSix
+	{
+		title = "How many lives should the players get?";
+		values[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15, 20, 25, 30, 40, 50};
+		texts[] = {"Infinite", "1 (Default, No respawn)", "2", "3", "4", "5", "6", "7", "8", "9", "10", "15", "20", "25", "30", "40", "50"};
+		default = 1;
+		code = "BTC_availableLives = %1";
+	};
+}
+
+
+
+class CfgSounds 
+{
+	sounds[]= {confirm1,warning1};
+	
+	class confirm1
+	{
+		name = "confirm1";
+		sound[] = {Sounds\confirm1.ogg, 1, 1.0};
+		titles[] = {};
+	};
+
+	class warning1
+	{
+		name = "warning1";
+		sound[] = {Sounds\warning1.ogg, 1, 1.0};
+		titles[] = {};
+	};
+};
+
+
